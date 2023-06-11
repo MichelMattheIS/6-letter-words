@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SixLetterWords", "SixLetterWords/SixLetterWords.csproj", "{F670A80D-C2C4-4E51-9397-791B8B5ECC71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SixLetterWords.Test", "SixLetterWords.Test\SixLetterWords.Test.csproj", "{BCFA715A-FD21-421E-AC97-78A76EBC3CBF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F670A80D-C2C4-4E51-9397-791B8B5ECC71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F670A80D-C2C4-4E51-9397-791B8B5ECC71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F670A80D-C2C4-4E51-9397-791B8B5ECC71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F670A80D-C2C4-4E51-9397-791B8B5ECC71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BCFA715A-FD21-421E-AC97-78A76EBC3CBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BCFA715A-FD21-421E-AC97-78A76EBC3CBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BCFA715A-FD21-421E-AC97-78A76EBC3CBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BCFA715A-FD21-421E-AC97-78A76EBC3CBF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

@@ -1,3 +1,8 @@
-﻿// See https://aka.ms/new-console-template for more information
+﻿
+using SixLetterWords;
 
-Console.WriteLine("Hello, World!");
+IWordProvider wordProvider = new TextFileWordProvider();
+ICombinationFinder combinationFinder = new CombinationFinder();
+
+var runner = new Runner(wordProvider, combinationFinder);
+runner.Run();
