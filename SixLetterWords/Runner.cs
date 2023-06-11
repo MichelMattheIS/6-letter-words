@@ -19,7 +19,7 @@ public class Runner
         var combinations = _combinationFinder.FindAllCombinations(words, combinationLength);
         foreach (var combination in combinations)
         {
-            Console.WriteLine(combination);
+            Console.WriteLine(combination.Combined());
         }
     }
 }

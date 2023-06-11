@@ -6,25 +6,39 @@ public class CombinationFinder : ICombinationFinder
 {
     public IEnumerable<Combination> FindAllCombinations(IEnumerable<string> words2, int combinationLength)
     {
+        List<Combination> result = new List<Combination>();
         var words = words2.ToList(); // todo fix multiple enumeration error
         var possibleResults = words.Where(w => w.Length == combinationLength);
 
         foreach (var w in words.Where(w => w.Length < combinationLength))
         {
-            var test = GetAllCombinations(w, words, combinationLength);
+            var combinations = GetAllCombinations(w, words, combinationLength);
+            foreach (var combination in combinations)
+            {
+                if (possibleResults.Contains(combination.Combined()))
+                {
+                    result.Add(combination);
+                }
+            }
         }
-        
-        // var test2 = GetCartesianProduct(words, 2);
-        // var test4 = GetCartesianProduct(words, 4);
 
-        return new List<Combination>();
+        return result;
     }
     
-    List<List<string>> GetAllCombinations(string word, List<string> words, int combinationLength)
+    List<Combination> GetAllCombinations(string word, List<string> words, int combinationLength)
     {
-        // words.
-        return words.Where(w => w.Length + word.Length < combinationLength)
-            .Select(w => new List<string> { word, w }).ToList();
+        List<Combination> result = words.Select(w => new Combination(new List<string>{w})).ToList();
+
+        int currentMaxLength = combinationLength;
+        while (currentMaxLength > 0)
+        {
+            var combinations = result.ToList().Where(c => c.Combined().Length + word.Length <= currentMaxLength)
+                .Select(c => new Combination(c.Words.Append(word).ToList()));
+            result.AddRange(combinations);
+            currentMaxLength--;
+        }
+
+        return result;
     }
 
     // public IEnumerable<IEnumerable<string>> CartesianProduct(IEnumerable<IEnumerable<string>> sequences)
