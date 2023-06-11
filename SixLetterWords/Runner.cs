@@ -1,4 +1,6 @@
-﻿namespace SixLetterWords;
+﻿using SixLetterWords.Services;
+
+namespace SixLetterWords;
 
 public class Runner
 {

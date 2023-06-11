@@ -1,4 +1,4 @@
-﻿namespace SixLetterWords;
+﻿namespace SixLetterWords.Services;
 
 public class TextFileWordProvider : IWordProvider
 {

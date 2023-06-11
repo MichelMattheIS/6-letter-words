@@ -1,3 +1,5 @@
+using SixLetterWords.Services;
+
 namespace SixLetterWords.Test;
 
 public class CombinationFinderTest

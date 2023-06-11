@@ -1,5 +1,6 @@
 ﻿
 using SixLetterWords;
+using SixLetterWords.Services;
 
 IWordProvider wordProvider = new TextFileWordProvider();
 ICombinationFinder combinationFinder = new CombinationFinder();

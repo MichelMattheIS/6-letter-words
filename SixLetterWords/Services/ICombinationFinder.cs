@@ -1,6 +1,6 @@
 ﻿using SixLetterWords.Models;
 
-namespace SixLetterWords;
+namespace SixLetterWords.Services;
 
 public interface ICombinationFinder
 {
