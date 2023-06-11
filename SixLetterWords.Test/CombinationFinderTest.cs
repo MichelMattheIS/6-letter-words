@@ -26,8 +26,8 @@ public class CombinationFinderTest
             "apples"
         };
         var combinations = _combinationFinder.FindAllCombinations(words, 6).ToList();
-        combinations.Should().Contain(c => c.Combined == "foobar");
-        combinations.Should().Contain(c => c.Combined == "apples");
+        combinations.Should().Contain(c => c.Combined() == "foobar");
+        combinations.Should().Contain(c => c.Combined() == "apples");
         combinations.Count.Should().Be(2);
     }
 }
