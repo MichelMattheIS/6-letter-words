@@ -13,7 +13,7 @@ public class CombinationFinder : ICombinationFinder
         foreach (string possibleCombination in possibleCombinations)
         {
             string remainingLetters = possibleCombination;
-            Combination combination = new Combination(new List<string>(), possibleCombination);
+            Combination combination = new Combination(new List<string>());
             int i = 0;
             while (i < combinableWords.Count)
             {
