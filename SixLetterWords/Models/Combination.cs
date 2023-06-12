@@ -3,11 +3,18 @@
 // Not so sure if this is a useful abstraction/ encapsulation or if simply using a list of strings was good enough
 public class Combination
 {
+    public string TodoDeleteLater { get; set; }
     public IList<string> Words { get;}
 
     public Combination(IList<string> words)
     {
         Words = words;
+    }
+    
+    public Combination(IList<string> words, string todoDeleteLater)
+    {
+        Words = words;
+        TodoDeleteLater = todoDeleteLater;
     }
 
     public string Combined()
@@ -41,6 +48,6 @@ public class Combination
 
     public override string ToString()
     {
-        return $"{Combined()}={string.Join("+", Words)}";
+        return $"[{TodoDeleteLater}] {Combined()}={string.Join("+", Words)}";
     }
 }

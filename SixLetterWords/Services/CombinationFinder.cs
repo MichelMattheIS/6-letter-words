@@ -7,25 +7,23 @@ public class CombinationFinder : ICombinationFinder
 {
     public IEnumerable<Combination> FindAllCombinations(IEnumerable<string> words, int combinationLength)
     {
-        var sixLetters = words.Where(s => s.Length == combinationLength).ToList();
-        var lessThanSixLetters = words.Where(s => s.Length < combinationLength).ToList();
+        var possibleCombinations = words.Where(s => s.Length == combinationLength).ToList();
+        var combinableWords = words.Where(s => s.Length < combinationLength).ToList();
         List<Combination> result = new List<Combination>();
-        foreach (string six in sixLetters)
+        foreach (string possibleCombination in possibleCombinations)
         {
-            string tmp = six;
-            Combination combination = new Combination(new List<string>());
+            string remainingLetters = possibleCombination;
+            Combination combination = new Combination(new List<string>(), possibleCombination);
             int i = 0;
-            while (i < lessThanSixLetters.Count)
+            while (i < combinableWords.Count)
             {
-                var lessSix = lessThanSixLetters[i];
-                if (tmp.StartsWith(lessSix))
+                var combinableWord = combinableWords[i];
+                if (remainingLetters.StartsWith(combinableWord))
                 {
-                    tmp = tmp.Substring(lessSix.Length);
-                    var index = Math.Min(six.IndexOf(lessSix), combination.Words.Count);
-                    // Console.WriteLine($"\nsix: {six} | lessSix: {lessSix} | tmp: {tmp} | index: {index}");
-                    combination.Words.Insert(index, lessSix);
+                    remainingLetters = remainingLetters.Substring(combinableWord.Length);
+                    combination.Words.Insert(combination.Words.Count, combinableWord);
                     
-                    if (string.IsNullOrEmpty(tmp))
+                    if (string.IsNullOrEmpty(remainingLetters))
                     {
                         result.Add(combination);
                         break;
