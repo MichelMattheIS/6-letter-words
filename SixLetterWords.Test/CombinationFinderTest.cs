@@ -32,6 +32,26 @@ public class CombinationFinderTest
     }
     
     [Test]
+    public void ShouldFindCombinations_WhenDeadEnds()
+    {
+        var words = new List<string>
+        {
+            "foobar",
+            "foob",
+            "foo",
+            "app",
+            "bar",
+            "le",
+            "s",
+            "apples"
+        };
+        var combinations = _combinationFinder.FindAllCombinations(words, 6).ToList();
+        combinations.Should().Contain(c => c.Combined() == "foobar");
+        combinations.Should().Contain(c => c.Combined() == "apples");
+        combinations.Count.Should().Be(2);
+    }
+    
+    [Test]
     public void ShouldNotFindCombinations()
     {
         var words = new List<string>
