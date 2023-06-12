@@ -14,23 +14,19 @@ public class CombinationFinder : ICombinationFinder
             string remainingLetters = possibleCombination;
             Combination combination = new Combination(new List<string>());
             int i = 0;
-            while (i < combinableWords.Count)
+            while (i < combinableWords.Count && !string.IsNullOrEmpty(remainingLetters))
             {
                 var combinableWord = combinableWords[i];
-                if (remainingLetters.StartsWith(combinableWord))
+                if (!remainingLetters.StartsWith(combinableWord))
                 {
-                    remainingLetters = remainingLetters.Substring(combinableWord.Length);
-                    combination.Words.Insert(combination.Words.Count, combinableWord);
-                    
-                    if (string.IsNullOrEmpty(remainingLetters))
-                    {
-                        result.Add(combination);
-                        break;
-                    }
-                    
-                    i = 0;
+                    i++;
+                    continue;
                 }
-                else i++;
+
+                remainingLetters = remainingLetters.Substring(combinableWord.Length);
+                combination.Words.Insert(combination.Words.Count, combinableWord);
+                if (string.IsNullOrEmpty(remainingLetters)) result.Add(combination);
+                i = 0;
             }
         }
 
