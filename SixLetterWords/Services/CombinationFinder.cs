@@ -18,7 +18,9 @@ public class CombinationFinder : ICombinationFinder
                 if (tmp.Contains(lessSix))
                 {
                     tmp = tmp.Replace(lessSix, "");
-                    combination.Words.Insert(six.IndexOf(lessSix), lessSix);
+                    var index = Math.Min(six.IndexOf(lessSix), combination.Words.Count);
+                    
+                    combination.Words.Insert(index, lessSix);
                 }
                 if (string.IsNullOrEmpty(tmp))
                 {
