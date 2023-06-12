@@ -4,51 +4,30 @@ namespace SixLetterWords.Services;
 
 public class CombinationFinder : ICombinationFinder
 {
-    public IEnumerable<Combination> FindAllCombinations(IEnumerable<string> words2, int combinationLength)
+    public IEnumerable<Combination> FindAllCombinations(IEnumerable<string> words, int combinationLength)
     {
+        var sixLetters = words.Where(s => s.Length == combinationLength).ToList();
+        var lessThanSixLetters = words.Where(s => s.Length < combinationLength).OrderByDescending(x => x.Length).ToList();
         List<Combination> result = new List<Combination>();
-        var words = words2.ToList(); // todo fix multiple enumeration error
-        var possibleResults = words.Where(w => w.Length == combinationLength);
-
-        foreach (var w in words.Where(w => w.Length < combinationLength))
+        foreach (string six in sixLetters)
         {
-            var combinations = GetAllCombinations(w, words, combinationLength);
-            foreach (var combination in combinations)
+            string tmp = six;
+            Combination combination = new Combination(new List<string>());
+            foreach (string lessSix in lessThanSixLetters)
             {
-                if (possibleResults.Contains(combination.Combined()))
+                if (tmp.Contains(lessSix))
+                {
+                    tmp = tmp.Replace(lessSix, "");
+                    combination.Words.Insert(six.IndexOf(lessSix), lessSix);
+                }
+                if (string.IsNullOrEmpty(tmp))
                 {
                     result.Add(combination);
+                    break;
                 }
             }
         }
 
         return result;
     }
-    
-    List<Combination> GetAllCombinations(string word, List<string> words, int combinationLength)
-    {
-        List<Combination> result = words.Select(w => new Combination(new List<string>{w})).ToList();
-
-        int currentMaxLength = combinationLength;
-        while (currentMaxLength > 0)
-        {
-            var combinations = result.ToList().Where(c => c.Combined().Length + word.Length <= currentMaxLength)
-                .Select(c => new Combination(c.Words.Append(word).ToList()));
-            result.AddRange(combinations);
-            currentMaxLength--;
-        }
-
-        return result;
-    }
-
-    // public IEnumerable<IEnumerable<string>> CartesianProduct(IEnumerable<IEnumerable<string>> sequences)
-    // {
-    //     IEnumerable<IEnumerable<string>> emptyProduct = new[] { Enumerable.Empty<string>() };
-    //     return sequences.Aggregate(
-    //         emptyProduct,
-    //         (accumulator, sequence) =>
-    //             from acc in accumulator
-    //             from item in sequence
-    //             select acc.Concat(new[] { item }));
-    // }
 }

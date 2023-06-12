@@ -38,4 +38,9 @@ public class Combination
             return false;
         }
     }
+
+    public override string ToString()
+    {
+        return $"{Combined()}={string.Join("+", Words)}";
+    }
 }
