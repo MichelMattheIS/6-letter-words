@@ -1,11 +1,10 @@
-﻿using System.Text.RegularExpressions;
-using SixLetterWords.Models;
+﻿using SixLetterWords.Models;
 
 namespace SixLetterWords.Services;
 
 public class CombinationFinder : ICombinationFinder
 {
-    public IEnumerable<Combination> FindAllCombinations(IEnumerable<string> words, int combinationLength)
+    public IEnumerable<Combination> FindAllCombinations(IReadOnlyCollection<string> words, int combinationLength)
     {
         var possibleCombinations = words.Where(s => s.Length == combinationLength).ToList();
         var combinableWords = words.Where(s => s.Length < combinationLength).ToList();

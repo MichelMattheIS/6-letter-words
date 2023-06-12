@@ -15,7 +15,7 @@ public class Runner
 
     public void Run(int combinationLength = 6)
     {
-        var words = _wordProvider.GetAllWords();
+        var words = _wordProvider.GetAllWords().ToList();
         var combinations = _combinationFinder.FindAllCombinations(words, combinationLength);
         foreach (var combination in combinations)
         {

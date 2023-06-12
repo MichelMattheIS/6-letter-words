@@ -4,7 +4,7 @@ namespace SixLetterWords.Test;
 
 public class CombinationFinderTest
 {
-    private ICombinationFinder _combinationFinder;
+    private ICombinationFinder _combinationFinder = null!;
     
     [OneTimeSetUp]
     public void Setup()
@@ -13,7 +13,7 @@ public class CombinationFinderTest
     }
 
     [Test]
-    public void Test1()
+    public void ShouldFindCombinations()
     {
         var words = new List<string>
         {
@@ -29,5 +29,21 @@ public class CombinationFinderTest
         combinations.Should().Contain(c => c.Combined() == "foobar");
         combinations.Should().Contain(c => c.Combined() == "apples");
         combinations.Count.Should().Be(2);
+    }
+    
+    [Test]
+    public void ShouldNotFindCombinations()
+    {
+        var words = new List<string>
+        {
+            "foobar",
+            "foo",
+            "app",
+            "ba",
+            "le",
+            "apples"
+        };
+        var combinations = _combinationFinder.FindAllCombinations(words, 6).ToList();
+        combinations.Count.Should().Be(0);
     }
 }
