@@ -4,6 +4,7 @@ namespace SixLetterWords.Services;
 
 public class CombinationFinder : ICombinationFinder
 {
+    // todo fix problem with backtracking
     public IEnumerable<Combination> FindAllCombinations(IReadOnlyCollection<string> words, int combinationLength)
     {
         var possibleCombinations = words.Where(s => s.Length == combinationLength).ToList();
